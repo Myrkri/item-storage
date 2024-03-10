@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: parser-config
+    namespace: default
+data:
+    dbUrl: jdbc:h2:mem:testdb

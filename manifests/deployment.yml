@@ -30,5 +30,10 @@ spec:
                 secretKeyRef:
                   key: password
                   name: storage-db-creds
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: dbUrl
+                  name: parser-config
           ports:
             - containerPort: 8080
