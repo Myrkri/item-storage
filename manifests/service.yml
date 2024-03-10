@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: item-storage-service-lb
+  labels:
+    app: item-storage
+spec:
+  ports:
+    - port: 82
+      targetPort: 8080
+      protocol: TCP
+  type: LoadBalancer
+  selector:
+    app: item-storage

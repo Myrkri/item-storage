@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: item-storage
+  name: item-storage
+  namespace: default
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: item-storage
+  template:
+    metadata:
+      labels:
+        app: item-storage
+    spec:
+      containers:
+        - image: myrkri/study_itemstorage:1.1
+          imagePullPolicy: IfNotPresent
+          name: study-itemstorage-1
+          env:
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: storage-db-creds
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: storage-db-creds
+          ports:
+            - containerPort: 8080
